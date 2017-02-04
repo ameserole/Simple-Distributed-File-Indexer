@@ -62,6 +62,10 @@ def print_sorted(word_dict):
 		print("{0:2}. Word: {1:{padding}} Count: {2}".format(i, word, word_dict.get(word), padding=padding))
 		i += 1
 
+def clear_master_index():
+	"""This clears the global dictionary word_index for unit testing purposes"""
+	word_index.clear()
+
 def main():
 	"""Parse the command line arguments, indexes the list of words in a file, and prints the top ten words"""
 	
