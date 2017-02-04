@@ -2,13 +2,13 @@
 Command-line indexer application that finds the top 10 words across a collection of documents
 
 ##Usage
-python file_indexer.py [-h] text-file [text-file ...]  
+`python file_indexer.py [-h] text-file [text-file ...] `
   
 positional arguments:  
   text-file   List of text files to be indexed  
 
 optional arguments:  
-  -h, --help  show this help message and exit  
+  -h, --help  show help message and exit  
 
 ##Example
 `python file_indexer.py test-files/artofwar.txt`  
