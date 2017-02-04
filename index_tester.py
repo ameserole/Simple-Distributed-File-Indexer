@@ -35,29 +35,41 @@ class test_word_indexer(unittest.TestCase):
 		self.word_list = ['one','two','two','three','three','three','four','four','four','four','five','five','five','five','five',
 						  'six', 'six', 'six', 'six', 'six', 'six', 'seven', 'seven', 'seven', 'seven', 'seven', 'seven', 'seven',
 						  'eight','eight','eight','eight','eight','eight','eight','eight','nine','nine','nine','nine','nine','nine',
-						  'nine','nine','nine','ten','ten','ten','ten','ten','ten','ten','ten','ten','ten', 'eleven', 'eleven', 'eleven'
-						  , 'eleven', 'eleven', 'eleven', 'eleven', 'eleven', 'eleven', 'eleven', 'eleven']
+						  'nine','nine','nine','ten','ten','ten','ten','ten','ten','ten','ten','ten','ten', 'eleven', 'eleven', 'eleven', 
+						  'eleven', 'eleven', 'eleven', 'eleven', 'eleven', 'eleven', 'eleven', 'eleven']
 		
 		self.word_list_mixed_case = ['One','two','twO','three','Three','Three','four','four','FOUR','four','five','five','five','five','five',
-						  'six', 'six', 'six', 'six', 'six', 'siX', 'seven', 'seven', 'seven', 'seven', 'seven', 'seven', 'seven',
-						  'eight','eight','EIGHT','eIght','eiGht','eight','eight','eight','nine','nine','nine','nine','nIne','nine',
-						  'nine','nine','ninE','ten','ten','TEN','ten','ten','ten','ten','ten','ten','ten', 'eleven', 'eleven', 'eleven'
-						  , 'eleven', 'eleven', 'eleven', 'eleven', 'ELEVEN', 'eleven', 'eleven', 'eleveN']
+						  			 'six', 'six', 'six', 'six', 'six', 'siX', 'seven', 'seven', 'seven', 'seven', 'seven', 'seven', 'seven',
+						  			 'eight','eight','EIGHT','eIght','eiGht','eight','eight','eight','nine','nine','nine','nine','nIne','nine',
+						  			 'nine','nine','ninE','ten','ten','TEN','ten','ten','ten','ten','ten','ten','ten', 'eleven', 'eleven', 'eleven', 
+						  			 'eleven', 'eleven', 'eleven', 'eleven', 'ELEVEN', 'eleven', 'eleven', 'eleveN']
 
 		self.proper_dict = {'eleven':11, 'ten':10, 'nine':9, 'eight':8, 'seven':7, 'six':6, 'five':5, 'four':4, 'three':3, 'two':2}
 
+		#Counts gotten from here: http://www.writewords.org.uk/word_count.asp
+		#NOTE: For onliberty.txt http://www.writewords.org.uk/word_count.asp lists "is" as having a count at 1013 but counts "is'" as a seperate word with a count of 1
+		self.proper_dict_onliberty = {'the':3488, 'of':2788, 'to':1969, 'and':1478, 'in':1141, 'is':1014, 'a':1008, 'it':856, 'be':768, 'that':740}
+	
+
 	def test_word_list(self):
-			#Test word indexer on a list of all lower case words
-			result = word_indexer(self.word_list)
-			self.assertEqual(result, self.proper_dict, "word_indexer did not properly index the words")
-			clear_master_index()	#Clear the master index in file_indexer.py so that the results of using word_indexer in each test arent felt in others
+		#Test word indexer on a list of all lower case words
+		result = word_indexer(self.word_list)
+		self.assertEqual(result, self.proper_dict, "word_indexer did not properly index the words")
+		clear_master_index()	#Clear the master index in file_indexer.py so that the results of using word_indexer in each test arent felt in others
 
 	def test_word_list_mixed_case(self):
-			#Test word indexer on a list of mixed case words
-			result = word_indexer(self.word_list_mixed_case)
-			self.assertEqual(result, self.proper_dict, "word_indexer did not properly index the words with mixed cases")
-			clear_master_index()	#Clear the master index in file_indexer.py so that the results of using word_indexer in each test arent felt in others
+		#Test word indexer on a list of mixed case words
+		result = word_indexer(self.word_list_mixed_case)
+		self.assertEqual(result, self.proper_dict, "word_indexer did not properly index the words with mixed cases")
+		clear_master_index()	#Clear the master index in file_indexer.py so that the results of using word_indexer in each test arent felt in others
 
+	def test_large_text(self):
+		#Test word indexer on a larger text file
+		file = open('test-files/onliberty.txt', 'r')
+		text = text_parser(file)
+		result = word_indexer(text)
+		self.assertEqual(result, self.proper_dict_onliberty, "word indexer failed to index the words in onliberty.txt")
+		clear_master_index()	#Clear the master index in file_indexer.py so that the results of using word_indexer in each test arent felt in others
 
 if __name__ == '__main__':
     unittest.main()
