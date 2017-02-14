@@ -75,7 +75,7 @@ arguments:
 ##Testing
 Prebuilt tests can be run using the index_tester.py file.  
 Usage: `python index_tester.py -b`  
-The `-b` suppress standard out. Remove it if you would like to see the print statements that appear while testing
+The `-b` suppress standard out. Remove it if you would like to see the print statements that appear while testing  
 This program was tested using the index_tester.py file
 
 ##Requirements
