@@ -26,8 +26,6 @@ arguments:
 import argparse
 import sys
 
-
-
 word_index = {}	#Dictionary to hold master index of all words encountered
 
 def text_parser(text_blob):
@@ -62,7 +60,7 @@ def word_indexer(word_list):
 	top_ten = {}
 	top_length = 10
 	
-	#If we don't have 10 words to work with only print out how many we have
+	#If we don't have 10 words to work with only print out the number we have
 	if len(sorted_list) < 10:
 		top_length = len(sorted_list)
 
@@ -97,7 +95,7 @@ def argument_parser(args_list):
 	"""This function parses the arguments passed through the commandline and runs through the rest of the program.
 	   Put in a seperate function in order to add unit tests
 	   Input: arguments passed through the commandline
-	   Output: Prints"""
+	   Output: Dictionary with the top ten words in the master index"""
 
 	parser = argparse.ArgumentParser(description="Simple Distributed File Indexer")
 	
@@ -123,18 +121,17 @@ def argument_parser(args_list):
 		parser.print_help()
 		exit(1)
 
-	sorted_list = word_indexer(word_list)
-	print_sorted(sorted_list)
+	top_ten = word_indexer(word_list)
+	print_sorted(top_ten)
 	
 	#Done to make testing argparse easier
-	return sorted_list
+	return top_ten
 
 
 def main():
 	"""Parse the command line arguments, indexes the list of words in a file, and prints the top ten words"""
 	
 	argument_parser(sys.argv[1:])
-
 
 if __name__ == '__main__':
 	main()

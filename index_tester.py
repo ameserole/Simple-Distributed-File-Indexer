@@ -48,9 +48,8 @@ class test_word_indexer(unittest.TestCase):
 		self.proper_dict = {'eleven':11, 'ten':10, 'nine':9, 'eight':8, 'seven':7, 'six':6, 'five':5, 'four':4, 'three':3, 'two':2}
 
 		#Counts gotten from here: http://www.writewords.org.uk/word_count.asp
-		#NOTE: For onliberty.txt http://www.writewords.org.uk/word_count.asp lists "is" as having a count at 1013 but counts "is'" as a seperate word with a count of 1
+		#NOTE: For onliberty.txt http://www.writewords.org.uk/word_count.asp lists "is" as having a count at 1013 but counts " is' " as a seperate word with a count of 1
 		self.proper_dict_onliberty = {'the':3488, 'of':2788, 'to':1969, 'and':1478, 'in':1141, 'is':1014, 'a':1008, 'it':856, 'be':768, 'that':740}
-	
 
 	def test_word_list(self):
 		#Test word indexer on a list of all lower case words
@@ -73,8 +72,6 @@ class test_word_indexer(unittest.TestCase):
 		self.assertDictEqual(result, self.proper_dict_onliberty, "word indexer failed to index the words in onliberty.txt")
 		clear_master_index()	#Clear the master index in file_indexer.py so that the results of using word_indexer in each test arent felt in others
 
-
-
 class test_argparser(unittest.TestCase):
 	def setUp(self):
 		self.file_arg = ['-f', 'test-files/non-alpha-num.txt']
@@ -89,7 +86,6 @@ class test_argparser(unittest.TestCase):
 						           'eleven', 'eleven', 'eleven', 'eleven', 'eleven', 'eleven', 'eleven', 'eleven']
 		
 		self.proper_dict = {'eleven':11, 'ten':10, 'nine':9, 'eight':8, 'seven':7, 'six':6, 'five':5, 'four':4, 'three':3, 'two':2}
-		
 
 	def test_file_arg(self):
 		#Test argument parsers ability to read in a file and parse it
