@@ -1,4 +1,3 @@
-#!/usr/bin/python
 """
 Simple Distributed File Indexer
 Andrew Meserole

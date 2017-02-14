@@ -14,7 +14,7 @@ arguments:
                         Blob of text to be indexed   
 
 ##Example
-`python file_indexer.py test-files/artofwar.txt`  
+`python file_indexer.py -f test-files/artofwar.txt`  
 outputs:  
 ```
 Top ten indexed words: 
@@ -29,7 +29,7 @@ Top ten indexed words:
  9. Word: be      Count: 612 
 10. Word: his     Count: 507
 ```   
-`python file_indexer.py test-files/artofwar.txt test-files/hamlet.txt`  
+`python file_indexer.py -f test-files/artofwar.txt test-files/hamlet.txt`  
 outputs:
 ```
 Top ten indexed words:
@@ -43,19 +43,33 @@ Top ten indexed words:
  8. Word: that    Count: 1036
  9. Word: i       Count: 898
 10. Word: it      Count: 893
+```  
+`python file_indexer.py -t "This is a sentence" "This is another sentence" "This is a third sentence"`  
+outputs:
 ```
+Top ten indexed words:
+ 1. Word: sentence    Count: 3
+ 2. Word: this        Count: 3
+ 3. Word: is          Count: 3
+ 4. Word: a           Count: 2
+ 5. Word: third       Count: 1
+ 6. Word: another     Count: 1
+
+```  
+
 `python file_indexer.py --help`  
 outputs:  
 ```
-usage: file_indexer.py [-h] text-file [text-file ...]
+usage: `file_indexer.py [-h] [-f text-file [text-file ...] | -t text-blob [text-blob ...]]`  
 
-Simple Distributed File Indexer
+Simple Distributed File Indexer  
 
-positional arguments:
-  text-file   List of text files to be indexed
-
-optional arguments:
-  -h, --help  show this help message and exit
+arguments:  
+  `-h, --help            show this help message and exit`  
+  `-f text-file [text-file ...], --files text-file [text-file ...]`  
+                        List of text files to be indexed  
+ `-t text-blob [text-blob ...], --text text-blob [text-blob ...]`  
+                        Blob of text to be indexed
 ```
 
 ##Testing
